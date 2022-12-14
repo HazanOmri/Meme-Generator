@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="onInit()">
+    <header>
+        <nav>
+            <p class="logo"></p>
+            <a href="#">Gallery</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+    <div class="search">
+        <input type="text" name="" id="" placeholder="Enter search keyword">
+        <a href="#">funny</a>
+        <a href="#">comics</a>
+        <a href="#">dogs</a>
+        <a href="#">drinks</a>
+        <a href="#">books</a>
+        <a href="#">more</a>
+    </div>
+    <div class="main-content">
+        <div class="imgs-container"></div>
+        <div class="canvas-container">
+            <canvas id="my-canvas" height="450" width="450" class="hide"></canvas>
+        </div>
+        <div class="tools hide">
+            <input type="text">
+            <div class="buttons flex">
+                <button>+</button>
+                <button>🗑</button>
+                <button>⇅</button>
+            </div>
+            <div class="buttons flex">
+                <button>A-</button>
+                <button>A+</button>
+                <button class="fa"></button>
+                <button>⇅</button>
+            </div>
+        </div>
+    </div>
+    <div class="designer">Lorem ipsum dolor sit amet consectetur adipisicing elit. In facilis, nam vitae nisi eaque
+        nemo? Rerum repellat qui, quod placeat doloremque autem tenetur inventore esse incidunt dolorum deleniti quia
+        pariatur!</div>
+    <footer>
+        <p class="logo"></p>
+        all rights reserved 2022
+    </footer>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <script src="js/service.js"></script>
+</body>
+
+</html>
