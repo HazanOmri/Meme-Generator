@@ -1,5 +1,6 @@
 'use strict'
 
+
 let gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
@@ -17,7 +18,7 @@ function addMemeLine(txt) {
     else {
         gMeme.lines.push({
             txt,
-            align: 'left',
+            align: 'center',
             fillColor: 'red',
             strokeColor: 'red',
             size: 40
@@ -44,18 +45,18 @@ function changeLineIndex() {
     else gMeme.selectedLineIdx--
 }
 
-function setFont(num){
-    gMeme.lines[gMeme.selectedLineIdx].size += num 
+function setFont(num) {
+    gMeme.lines[gMeme.selectedLineIdx].size += num
 }
 
 
-function setAlign(val){
+function setAlign(val) {
     gMeme.lines[gMeme.selectedLineIdx].align = val
 }
 
-function setFillColor(color){
+function setFillColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].fillColor = color
 }
-function setStrokeColor(color){
+function setStrokeColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }

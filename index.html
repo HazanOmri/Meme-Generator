@@ -9,52 +9,71 @@
     <title>Meme Generator</title>
 </head>
 
-<body onload="onInit()">
-    <header>
-        <nav>
-            <p class="logo"></p>
-            <a href="#">Gallery</a>
-            <a href="#">About</a>
-        </nav>
+<body onload="onInit()" class="main-layout">
+    <header class="flex full main-layout">
+        <div class="header-container flex">
+            <p class="logo">memegen</p>
+            <nav>
+                <ul class="flex clean-list">
+                    <li><a href="#" class="active">Gallery</a></li>
+                    <li> <a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <div class="search">
+    <div class="search flex">
         <input type="text" name="" id="" placeholder="Enter search keyword">
-        <a href="#">funny</a>
-        <a href="#">comics</a>
-        <a href="#">dogs</a>
-        <a href="#">drinks</a>
-        <a href="#">books</a>
-        <a href="#">more</a>
+        <div class="key-words">
+            <a href="#">funny</a>
+            <a href="#">comics</a>
+            <a href="#">dogs</a>
+            <a href="#">drinks</a>
+            <a href="#">books</a>
+            <a href="#">more</a>
+        </div>
     </div>
-    <div class="main-content">
+    <div class="main-content full main-layout">
         <div class="imgs-container"></div>
-        <div class="canvas-container">
+        <div class="canvas-container flex">
             <canvas id="my-canvas" height="450" width="450" class="hide"></canvas>
-        </div>
-        <div class="tools hide">
-            <input class="edit" type="text" oninput="onAddLineTxt(this.value)">
-            <div class="buttons flex">
-                <button class="fa plus" onclick="onAddLine()">+</button>
-                <button class="fa trash" onclick="resetMeme()"></button>
-                <button class="fa-solid up-down" onclick="onChangeLine()"></button>
-            </div>
-            <div class="buttons flex">
-                <button class="fa font-plus" onclick="onSetFont(5)"></button>
-                <button class="fa font-minus" onclick="onSetFont(-5)"></button>
-                <button class="fa-solid align-right" onclick="onSetAlign('right')"></button>
-                <button class="fa-solid align-center" onclick="onSetAlign('center')"></button>
-                <button class="fa-solid align-left" onclick="onSetAlign('left')"></button>
-                <input type="color" oninput="onSetFillColor(this.value)">
-                <input type="color" oninput="onSetStrokeColor(this.value)">
+
+            <div class="tools hide">
+                <input class="edit" type="text" oninput="onAddLineTxt(this.value)">
+                <div class="buttons flex">
+                    <button class="fa plus" onclick="onAddLine()">+</button>
+                    <button class="fa trash" onclick="resetMeme()"></button>
+                    <button class="fa-solid up-down" onclick="onChangeLine()"></button>
+                </div>
+                <div class="buttons flex">
+                    <button class="fa font-plus" onclick="onSetFont(5)"></button>
+                    <button class="fa font-minus" onclick="onSetFont(-5)"></button>
+                    <button class="fa-solid align-right" onclick="onSetAlign('right')"></button>
+                    <button class="fa-solid align-center" onclick="onSetAlign('center')"></button>
+                    <button class="fa-solid align-left" onclick="onSetAlign('left')"></button>
+                    <input type="color" oninput="onSetFillColor(this.value)">
+                    <input type="color" oninput="onSetStrokeColor(this.value)">
+                </div>
             </div>
         </div>
     </div>
-    <div class="designer">Lorem ipsum dolor sit amet consectetur adipisicing elit. In facilis, nam vitae nisi eaque
-        nemo? Rerum repellat qui, quod placeat doloremque autem tenetur inventore esse incidunt dolorum deleniti quia
-        pariatur!</div>
-    <footer>
-        <p class="logo"></p>
-        all rights reserved 2022
+    <div class="designer flex">
+        <img src="img/1.jpg" alt="">
+        <div class="about">
+            <p>Donald Trump</p>
+            <div class="txt">
+                This guy was the president of the USA as the Simpsons predicted
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum blanditiis vero suscipit unde corporis
+                eligendi doloremque, accusantium commodi, doloribus eius eos tempora voluptatum distinctio optio, cum
+                nisi
+                fugiat fugit quasi.
+            </div>
+        </div>
+    </div>
+    <footer class="full main-layout">
+        <div class="footer container">
+            <p class="logo">memegen</p>
+            all rights reserved 2022
+        </div>
     </footer>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>

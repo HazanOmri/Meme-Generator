@@ -18,6 +18,7 @@ function renderImgs() {
 
 function moveToCanvas(elImg) {
     setMemeImgId(elImg.id)
+    document.querySelector('.search').classList.add('hide')
     document.querySelector('.imgs-container').classList.add('hide')
     document.querySelector('.designer').classList.add('hide')
     showCanvas(elImg)

@@ -3,6 +3,7 @@
 let gElCanvas
 let gCtx
 let gCountLines = 0
+let gToggleTxtBox = true
 
 function showCanvas(elImg) {
     document.querySelector('canvas').classList.remove('hide')
@@ -27,8 +28,9 @@ function renderTextLine(line, lineIdx) {
     gCtx.textBaseline = 'middle'
     gCtx.fillText(line.txt, gElCanvas.width / 2, hgt)
     gCtx.strokeText(line.txt, gElCanvas.width / 2, hgt)
-    if (memeSelectedLineIdx === lineIdx) {
-        const txtLength = line.txt.split('').length * line.size +10
+    if (memeSelectedLineIdx === lineIdx && gToggleTxtBox) {
+        const txtLength = line.txt.split('').length * line.size + 10
+        gCtx.strokeStyle = `black`
         gCtx.strokeRect(gElCanvas.width / 2 - txtLength / 2, hgt - (line.size / 2), txtLength, line.size)
     }
 }
@@ -84,17 +86,17 @@ function onSetFont(num) {
 }
 
 
-function onSetAlign(val){
+function onSetAlign(val) {
     setAlign(val)
     console.log(gMeme.lines)
     renderMeme()
 }
 
-function onSetFillColor(color){
+function onSetFillColor(color) {
     setFillColor(color)
     renderMeme()
 }
-function onSetStrokeColor(color){
+function onSetStrokeColor(color) {
     setStrokeColor(color)
     renderMeme()
 }

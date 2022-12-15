@@ -1,0 +1,80 @@
+/* TYPOGRAPHY */
+/* FONTS */
+
+@font-face {
+    font-family: fa-regular;
+    src: url("/fonts/font-awesome/fa-regular-400.ttf");
+}
+
+@font-face {
+    font-family: fa-solid;
+    src: url("/fonts/font-awesome/fa-solid-900.ttf");
+}
+
+.fa-regular::before {
+    font-family: fa-regular;
+}
+
+.fa-solid::before {
+    font-family: fa-solid;
+}
+
+/* BUTTONS SYMBOLS */
+button.align-right::before {
+    content: "\f036";
+}
+
+button.align-center::before {
+    content: "\f037";
+}
+
+button.align-left::before {
+    content: "\f038";
+}
+
+button.up-down::before {
+    content: "\f338";
+}
+
+button.font-plus::before {
+    content: "A+";
+}
+
+button.font-minus::before {
+    content: "A-";
+}
+
+button.trash::before {
+    content: "trash";
+}
+
+.main-content{
+    justify-items: space-between;
+}
+
+canvas {
+    display: flex;
+    margin: 0;
+    outline: 1px solid black;
+    background-color: white;
+}
+
+.canvas-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tools-show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+button {
+    width: fit-content;
+    justify-self: center;
+    align-items: center;
+}

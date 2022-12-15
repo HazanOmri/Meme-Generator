@@ -1,0 +1,60 @@
+/* TYPOGRAPHY */
+/* FONTS */
+
+@font-face {
+    font-family: fa-brands;
+    src: url("/fonts/font-awesome/fa-brands-400.ttf");
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url("/fonts/montserrat/Montserrat-Bold.ttf");
+}
+
+.fa-brands::before {
+    font-family: fa-brands;
+}
+
+.search {
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+}
+
+.search a {
+    text-decoration: none;
+    color: var(--clr9);
+}
+
+.imgs-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 20px
+}
+
+img {
+    width: 100%;
+}
+
+.designer{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.designer img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.designer .about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.designer p {
+    font-family: Montserrat-Bold ,sans-serif;
+    align-self: flex-start;
+}
