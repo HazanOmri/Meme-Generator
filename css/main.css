@@ -40,6 +40,7 @@ img {
 
 .main-content {
     background-color: grey;
+    width: 100%;
 }
 
 .tools-show {
@@ -74,28 +75,32 @@ button {
 }
 
 button.align-right::before {
-    content: "\f038";
+    content: "\f036";
+}
+
+button.align-center::before {
+    content: "\f037";
 }
 
 button.align-left::before {
-    content: "\f036";
+    content: "\f038";
 }
 
 button.up-down::before {
     content: "\f338";
 }
 
-/* button.font-plus::before {
-    content: "\f038";
+button.font-plus::before {
+    content: "A+";
 }
 
 button.font-minus::before {
-    content: "\f038";
+    content: "A-";
 }
 
-button.align-right::before {
-    content: "\f038";
-} */
+button.trash::before {
+    content: "trash";
+}
 
 
 p.text {

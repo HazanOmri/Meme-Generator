@@ -14,33 +14,43 @@ function showCanvas(elImg) {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderTextLine(txt, selectedLineIdx) {
+function renderTextLine(line, lineIdx) {
+    let hgt = gElCanvas.height * 0.1
+    const memeSelectedLineIdx = getMeme().selectedLineIdx
+    if (lineIdx === 1) hgt = 400
+    else if (lineIdx != 0) hgt = gElCanvas.height / 2 - lineIdx * 30
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'brown'
-    gCtx.fillStyle = 'black'
-    gCtx.font = "40px arial";
-    gCtx.textAlign = 'center'
+    gCtx.strokeStyle = `${line.strokeColor}`
+    gCtx.fillStyle = `${line.fillColor}`
+    gCtx.font = `${line.size}px arial`
+    gCtx.textAlign = `${line.align}`
     gCtx.textBaseline = 'middle'
-    gCtx.fillText(txt, gElCanvas.width / 2, 50 * (selectedLineIdx + 1))
-    gCtx.strokeText(txt, gElCanvas.width / 2, 50 * (selectedLineIdx + 1))
+    gCtx.fillText(line.txt, gElCanvas.width / 2, hgt)
+    gCtx.strokeText(line.txt, gElCanvas.width / 2, hgt)
+    if (memeSelectedLineIdx === lineIdx) {
+        const txtLength = line.txt.split('').length * line.size +10
+        gCtx.strokeRect(gElCanvas.width / 2 - txtLength / 2, hgt - (line.size / 2), txtLength, line.size)
+    }
 }
 
 function renderLines() {
     const meme = getMeme()
-    meme.lines.forEach(line =>
-        renderTextLine(line.txt, meme.selectedLineIdx)
+    meme.lines.forEach((line, idx) =>
+        renderTextLine(line, idx)
     );
 }
 
 function onAddLineTxt(txt) {
-
     addMemeLine(txt, gCountLines)
-    const elImg = getImg()
-    clearMeme(elImg)
+    renderMeme()
+}
+
+function renderMeme() {
+    clearMeme()
     renderLines()
 }
 
-function clearMeme(elImg) {
+function clearMeme(elImg = getImg()) {
     clearCanvas()
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
@@ -51,15 +61,40 @@ function clearCanvas() {
 
 function onChangeLine() {
     changeLineIndex()
+    let elInput = document.querySelector('.edit')
+    elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
+    renderMeme()
 }
 
 function onAddLine() {
-    changeLineIndex()
-    clearMeme(getImg())
-    renderLines()
+    const elInput = document.querySelector('.edit')
+    addLineIndex()
+    elInput.value = ''
+    renderMeme()
 }
 
 function getImg() {
     const meme = getMeme()
     return document.getElementById(meme.selectedImgId)
+}
+
+function onSetFont(num) {
+    setFont(num)
+    renderMeme()
+}
+
+
+function onSetAlign(val){
+    setAlign(val)
+    console.log(gMeme.lines)
+    renderMeme()
+}
+
+function onSetFillColor(color){
+    setFillColor(color)
+    renderMeme()
+}
+function onSetStrokeColor(color){
+    setStrokeColor(color)
+    renderMeme()
 }

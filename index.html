@@ -32,18 +32,20 @@
             <canvas id="my-canvas" height="450" width="450" class="hide"></canvas>
         </div>
         <div class="tools hide">
-            <input type="text" oninput="onAddLineTxt(this.value)">
+            <input class="edit" type="text" oninput="onAddLineTxt(this.value)">
             <div class="buttons flex">
                 <button class="fa plus" onclick="onAddLine()">+</button>
-                <button class="fa trash"></button>
+                <button class="fa trash" onclick="resetMeme()"></button>
                 <button class="fa-solid up-down" onclick="onChangeLine()"></button>
             </div>
             <div class="buttons flex">
-                <button class="fa font-plus"></button>
-                <button class="fa font-minus"></button>
-                <button class="fa-solid align-left"></button>
-                <button class="fa-solid align-right"></button>
-                <button></button>
+                <button class="fa font-plus" onclick="onSetFont(5)"></button>
+                <button class="fa font-minus" onclick="onSetFont(-5)"></button>
+                <button class="fa-solid align-right" onclick="onSetAlign('right')"></button>
+                <button class="fa-solid align-center" onclick="onSetAlign('center')"></button>
+                <button class="fa-solid align-left" onclick="onSetAlign('left')"></button>
+                <input type="color" oninput="onSetFillColor(this.value)">
+                <input type="color" oninput="onSetStrokeColor(this.value)">
             </div>
         </div>
     </div>
