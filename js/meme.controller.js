@@ -11,56 +11,42 @@ function showCanvas(elImg) {
     document.querySelector('.tools').classList.remove('hide')
     document.querySelector('.tools').classList.add('tools-show')
     document.querySelector('.main-content').classList.add('flex-grow')
+    document.querySelector('.main-content').classList.add('flex-grow')
+    document.querySelector('.header-nav a').classList.remove('active')
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     gCtx.strokeStyle = `black`
     gCtx.strokeRect(gElCanvas.width / 2 - 50, gElCanvas.height - 50, 100, 30)
     gCtx.strokeRect(gElCanvas.width / 2 - 50, gElCanvas.height - 430, 100, 30)
-    console.log(gMeme.lines)
     addListeners()
+}
 
+function onMoveToGallery() {
+    document.querySelector('.canvas-container').classList.add('hide')
+    document.querySelector('.tools').classList.add('hide')
+    document.querySelector('.tools').classList.remove('tools-show')
+    document.querySelector('.main-content').classList.remove('flex-grow')
+    onShowGallery()
 }
 
 function renderTextLine(line, lineIdx) {
-    let y = gElCanvas.height * 0.1
-    let x = gElCanvas.width / 2
+    const { x, y } = getCord(line, lineIdx)
     const memeSelectedLineIdx = getMeme().selectedLineIdx
-    if (lineIdx === 1) y = 400
-    else if (lineIdx != 0) y = gElCanvas.height / 2 - lineIdx * 30
-    if (line.isDrag != undefined) {
-        x = line.pos.x
-        y = line.pos.y
-        // if (!line.isDrag) {
-        //     x = line.pos.x * 2
-        //     y = line.pos.y * 2
-        // }
-    }
-
-
     gCtx.lineWidth = 2
     gCtx.strokeStyle = `${line.strokeColor}`
     gCtx.fillStyle = `${line.fillColor}`
-    gCtx.font = `${line.size}px Impact`
+    gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = `${line.align}`
     gCtx.textBaseline = 'middle'
     gCtx.fillText(line.txt, x, y)
     gCtx.strokeText(line.txt, x, y)
-    if (memeSelectedLineIdx === lineIdx) {
-        const txtLength = line.txt.split('').length * line.size + 10
-
-        gCtx.strokeStyle = `black`
-        gCtx.strokeRect(x - txtLength / 2, y - (line.size / 2), txtLength, line.size)
-        line.pos = { x, y, width: txtLength, height: line.size }
-        console.log(line.pos)
-    }
+    if (memeSelectedLineIdx === lineIdx) drewTxtBox(line, x, y)
 }
 
 function renderLines() {
     const meme = getMeme()
-    meme.lines.forEach((line, idx) =>
-        renderTextLine(line, idx)
-    );
+    meme.lines.forEach((line, idx) => renderTextLine(line, idx))
 }
 
 function onAddLineTxt(txt) {
@@ -101,8 +87,8 @@ function getImg() {
     return document.getElementById(meme.selectedImgId)
 }
 
-function onSetFont(num) {
-    setFont(num)
+function onSetFontSize(num) {
+    setFontSize(num)
     renderMeme()
 }
 
@@ -154,7 +140,7 @@ function onDown(ev) {
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
     const lineIdx = getLineClickedIdx(pos)
-    chooseLine(lineIdx)
+    chooseLineByIdx(lineIdx)
     setLineDrag(true)
     document.body.style.cursor = 'grabbing'
     renderMeme()
@@ -205,4 +191,25 @@ function getEvPos(ev) {
 function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
+}
+
+function onSetFont(font) {
+    setFont(font)
+    renderMeme()
+}
+
+function drewTxtBox(line, x, y) {
+    const txtLength = line.txt.split('').length * line.size + 10
+    gCtx.strokeStyle = `black`
+    gCtx.strokeRect(x - txtLength / 2, y - (line.size / 2), txtLength, line.size)
+    setLinePos(line, x, y, txtLength, line.size)
+}
+
+function onUploadImg() {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    doUploadImg(imgDataUrl, onSuccess)
 }

@@ -22,6 +22,7 @@ function addMemeLine(txt) {
             fillColor: 'white',
             strokeColor: 'black',
             size: 40,
+            font: 'Impact',
             pos: {},
         })
     }
@@ -36,21 +37,12 @@ function addLineIndex() {
     gMeme.selectedLineIdx = gMeme.lines.length
 }
 
-function resetLines() {
-    gMeme.lines = []
-    gMeme.selectedLineIdx = 0
-}
-
 function changeLineIndex() {
     if (gMeme.selectedLineIdx === 0 || gMeme.selectedLineIdx === -1) { gMeme.selectedLineIdx = gMeme.lines.length - 1 }
     else { gMeme.selectedLineIdx-- }
 }
 
-function chooseLineIdx(lineIdx) {
-    gMeme.selectedLineIdx === lineIdx
-}
-
-function setFont(num) {
+function setFontSize(num) {
     gMeme.lines[gMeme.selectedLineIdx].size += num
 }
 
@@ -80,7 +72,7 @@ function getLineClickedIdx(pos) {
         y < line.pos.y + line.pos.height / 2)
 }
 
-function chooseLine(lineIdx) {
+function chooseLineByIdx(lineIdx) {
     gMeme.selectedLineIdx = lineIdx
 }
 
@@ -89,10 +81,41 @@ function setLineDrag(isDrag) {
         gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
         console.log('drag')
     }
-
 }
 
 function moveLine(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}
+
+function setFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function getCord(line, lineIdx) {
+    let y = gElCanvas.height * 0.1
+    let x = gElCanvas.width / 2
+    if (lineIdx === 1) y = 400
+    else if (lineIdx != 0) y = gElCanvas.height / 2 - lineIdx * 30
+    if (line.isDrag != undefined) {
+        x = line.pos.x
+        y = line.pos.y
+    }
+    return { x, y }
+}
+
+function setLinePos(line, x, y, width, height) {
+    line.pos = { x, y, width, height }
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+    const formData = new FormData()
+    formData.append('img', imgDataUrl)
+    console.log('formData:', formData)
+    fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
+        .then(res => res.text())
+        .then(url => {
+            console.log('url:', url)
+            onSuccess(url)
+        })
 }

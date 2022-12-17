@@ -7,8 +7,9 @@ function onInit() {
     renderImgs()
 }
 
-function renderImgs() {
-    const imgs = getImgs()
+function renderImgs(key) {
+    let imgs = getImgs()
+    if (key != undefined && key != '') imgs = filterSearch(key)
     let strHTML = ''
     imgs.forEach(img => {
         strHTML += `<img src="${img.url}" id = "${img.id}"onclick="moveToCanvas(this)">`
@@ -25,13 +26,26 @@ function moveToCanvas(elImg) {
     showCanvas(elImg)
 }
 
-function getCurrImgUrl(){
+function onShowGallery() {
+    document.body.classList.remove('meme-editor')
+    document.querySelector('.search').classList.remove('hide')
+    document.querySelector('.imgs-container').classList.remove('hide')
+    document.querySelector('.designer').classList.remove('hide')
+    document.querySelector('.canvas-container').classList.add('hide')
+    document.querySelector('.header-nav a').classList.add('active')
+}
+
+function getCurrImgUrl() {
     return currImgUrl
 }
 
 function onToogleNav(elButton) {
-    if(elButton)elButton.classList.toggle('hide')
+    if (elButton) elButton.classList.toggle('hide')
     else document.querySelector('.hamburger').classList.toggle('hide')
     const elMenu = document.querySelector('.header-nav')
     elMenu.classList.toggle('open')
+}
+
+function onFilterSearch(key) {
+    renderImgs(key)
 }
