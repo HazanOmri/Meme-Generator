@@ -12,13 +12,15 @@
 <body onload="onInit()" class="main-layout">
     <header class="flex full main-layout">
         <div class="header-container flex">
-            <p class="logo">memegen</p>
-            <nav>
+            <p class="logo"><img src="/img/LOGO.png" alt=""></p>
+            <nav class="header-nav">
                 <ul class="flex clean-list">
                     <li><a href="#" class="active">Gallery</a></li>
                     <li> <a href="#">About</a></li>
                 </ul>
+                <a class="close-modal" onclick="onToogleNav()">X</a>
             </nav>
+            <a href="#" class="hamburger" onclick="onToogleNav(this)">☰</a>
         </div>
     </header>
     <div class="search flex">
@@ -34,24 +36,31 @@
     </div>
     <div class="main-content full main-layout">
         <div class="imgs-container"></div>
-        <div class="canvas-container flex">
-            <canvas id="my-canvas" height="450" width="450" class="hide"></canvas>
-
+        <div class="canvas-container hide">
+            <canvas id="my-canvas" height="450" width="450"></canvas>
             <div class="tools hide">
-                <input class="edit" type="text" oninput="onAddLineTxt(this.value)">
-                <div class="buttons flex">
-                    <button class="fa plus" onclick="onAddLine()">+</button>
-                    <button class="fa trash" onclick="resetMeme()"></button>
-                    <button class="fa-solid up-down" onclick="onChangeLine()"></button>
+                <div class="meme-tools flex">
+                    <input class="edit" type="text" oninput="onAddLineTxt(this.value)">
+                    <img src="/icons/add.png" alt="" onclick="onAddLine()">
+                    <img src="/icons/trash.png" alt="" onclick="onDeleteRow()">
+                    <img src="/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""
+                        onclick="onChangeLine()">
                 </div>
-                <div class="buttons flex">
-                    <button class="fa font-plus" onclick="onSetFont(5)"></button>
-                    <button class="fa font-minus" onclick="onSetFont(-5)"></button>
-                    <button class="fa-solid align-right" onclick="onSetAlign('right')"></button>
-                    <button class="fa-solid align-center" onclick="onSetAlign('center')"></button>
-                    <button class="fa-solid align-left" onclick="onSetAlign('left')"></button>
-                    <input type="color" oninput="onSetFillColor(this.value)">
-                    <input type="color" oninput="onSetStrokeColor(this.value)">
+                <div class="design-tools flex">
+                    <img src="/icons/increase font - icon.png" alt="" onclick="onSetFont(5)">
+                    <img src="/icons/decrease font - icon.png" alt="" onclick="onSetFont(-5)">
+                    <img src="/icons/align-to-left.png" alt="" onclick="onSetAlign('right')">
+                    <img src="/icons/center-text-alignment.png" alt="" onclick="onSetAlign('center')">
+                    <img src="/icons/align-to-right.png" alt="" onclick="onSetAlign('left')">
+                    <select name="fonts" id="">
+                        <option value="arial">arial</option>
+                    </select>
+                    <input type="color" name="fill" oninput="onSetFillColor(this.value)">
+                    <input type="color" name="stroke" oninput="onSetStrokeColor(this.value)">
+                </div>
+                <div class="end-buttons" flex>
+                    <a href="">save</a>
+                    <a href="#" onclick="downloadImg(this)" download="my-img.jpg">download</a>
                 </div>
             </div>
         </div>
@@ -67,11 +76,16 @@
                 nisi
                 fugiat fugit quasi.
             </div>
+            <div class="social-links flex">
+                <img src="/icons/linkedin-logo.png" alt="">
+                <img src="/icons/facebook-logo.png" alt="">
+                <img src="/icons/github-logo.png" alt="">
+            </div>
         </div>
     </div>
     <footer class="full main-layout">
         <div class="footer container">
-            <p class="logo">memegen</p>
+            <p class="logo"><img src="/img/LOGO.png" alt=""></p>
             all rights reserved 2022
         </div>
     </footer>

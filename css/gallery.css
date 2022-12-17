@@ -1,24 +1,16 @@
 /* TYPOGRAPHY */
 /* FONTS */
-
-@font-face {
-    font-family: fa-brands;
-    src: url("/fonts/font-awesome/fa-brands-400.ttf");
-}
-
 @font-face {
     font-family: Montserrat-Bold;
     src: url("/fonts/montserrat/Montserrat-Bold.ttf");
-}
-
-.fa-brands::before {
-    font-family: fa-brands;
 }
 
 .search {
     justify-content: space-between;
     height: 100px;
     align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .search a {
@@ -28,7 +20,6 @@
 
 .imgs-container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(100px, 1fr));
     gap: 20px
 }
 
@@ -36,25 +27,85 @@ img {
     width: 100%;
 }
 
-.designer{
+.designer {
     padding-top: 50px;
     padding-bottom: 50px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
-.designer img{
+.designer img {
     border-radius: 50%;
     height: 200px;
     width: 200px;
 }
 
-.designer .about{
+.designer .about {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-left: 20px;
+    padding-right: 20px;
 }
 
 .designer p {
-    font-family: Montserrat-Bold ,sans-serif;
-    align-self: flex-start;
+    font-family: Montserrat-Bold, sans-serif;
+}
+
+.social-links {
+    flex-direction: row;
+}
+
+.social-links img {
+    margin: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: #ff7f00;
+}
+
+/* mobile only */
+
+@media (min-width: 450px) {
+    .imgs-container {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+
+}
+
+/* medium  */
+@media (min-width: 700px) {
+    .search {
+        flex-direction: row;
+        padding: 0px;
+        justify-content: space-between;
+    }
+
+}
+
+/* large  */
+@media (min-width: 1060px) {
+    .imgs-container {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+
+    .designer {
+        flex-direction: row;
+        /* align-items: center; */
+    }
+
+    .designer .about {
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    .designer p {
+        font-family: Montserrat-Bold, sans-serif;
+        align-self: flex-start;
+    }
+    .social-links{
+        align-self: flex-start;
+
+    }
 }

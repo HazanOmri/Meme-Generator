@@ -18,6 +18,7 @@ function renderImgs() {
 
 function moveToCanvas(elImg) {
     setMemeImgId(elImg.id)
+    document.body.classList.add('meme-editor')
     document.querySelector('.search').classList.add('hide')
     document.querySelector('.imgs-container').classList.add('hide')
     document.querySelector('.designer').classList.add('hide')
@@ -26,4 +27,11 @@ function moveToCanvas(elImg) {
 
 function getCurrImgUrl(){
     return currImgUrl
+}
+
+function onToogleNav(elButton) {
+    if(elButton)elButton.classList.toggle('hide')
+    else document.querySelector('.hamburger').classList.toggle('hide')
+    const elMenu = document.querySelector('.header-nav')
+    elMenu.classList.toggle('open')
 }
